@@ -1,60 +1,58 @@
-def expression_checker(expression:str) -> bool:
-    opening_bracket = 0
-    closing_bracket = 0
+def expression_checker(expression: str) -> bool:
+    if not expression:
+        return False
+    count_brackets = 0
     for sign in expression:
         if sign == '(':
-            opening_bracket += 1
+            count_brackets += 1
         elif sign == ')':
-            closing_bracket += 1
-        if closing_bracket > opening_bracket:
+            count_brackets -= 1
+        if count_brackets < 0:
             return False
-    if opening_bracket != closing_bracket:
-        return False
-    elif expression == '':
-        return False
-    else:
-        return True
+    return count_brackets == 0 
+
     
 def expression_corrector(expression:str) -> list:
-    split_expression = []
-    new_expressions = []
-    for sign in expression:
-        split_expression.append(sign)
-    for i in range(len(split_expression)):
-        if split_expression[i] == '(' or split_expression[i] == ')':
-            temp = split_expression[i]
-            split_expression[i] = ''
-            str_expression = ''.join(split_expression)
-            is_new_expression_correct = expression_checker(str_expression)
-            if is_new_expression_correct and str_expression not in new_expressions:
-                new_expressions.append(str_expression)
-            split_expression[i] = temp
 
-    return new_expressions
+    solutions = set()
+    quene = [expression]
+    processed = [expression]
+    max_solution_length = -1
 
-def longest_expression_selector(list_of_expressions:list) -> list:
-    max_len = 0
-    longest_expressions = []
-    for element in list_of_expressions:
-        if len(element) > max_len:
-            max_len = len(element)
-    for element in list_of_expressions:
-        if len(element) == max_len:
-            longest_expressions.append(element)
-    return longest_expressions
+    while quene:
+        
+        analyzed_expression = quene.pop(0)
 
-def find_longest_correct_expressions(expression):
-    is_expression_correct = expression_checker(expression)
-    if is_expression_correct:
-        longest_corrected_expressions = []
-        longest_corrected_expressions.append(expression)
+        if len(analyzed_expression) < max_solution_length:
+            break
+
+        if expression_checker(analyzed_expression):
+            solutions.add(analyzed_expression)
+            max_solution_length = len(analyzed_expression)
+
+        if max_solution_length == -1:
+
+            for i in range(len(analyzed_expression)):
+                sign = analyzed_expression[i]
+
+                if not sign in ['(', ')']:
+                    continue
+
+                candidate = analyzed_expression[0:i] + analyzed_expression[i+1:]
+        
+                if candidate not in processed:
+                    quene.append(candidate)
+                    processed.append(candidate)
+
+    return solutions
+
+def expressions_engine(expression):
+    if expression_checker(expression):
+        return [expression]
     else:
-        corrected_expressions = expression_corrector(expression)
-        longest_corrected_expressions = longest_expression_selector(corrected_expressions)
-    return longest_corrected_expressions
-
+        return expression_corrector(expression)
+    
 if __name__ == '__main__':
     expression = '((a+b))+(c+d))'
-    result = find_longest_correct_expressions(expression)
-    print(result)
+    result = expressions_engine(expression)
     
