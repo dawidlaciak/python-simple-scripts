@@ -18,9 +18,9 @@ def check_subtext(text_a:str, text_b:str) -> bool:
     if letter_number == len(text_a):
             print(f'{text_a} is subtext of {text_b}.')
             return True
-    else:
-         print(f'{text_a} is not subtext of {text_b}.')
-         return False
+    
+    print(f'{text_a} is not subtext of {text_b}.')
+    return False
 
 if __name__ == '__main__':
     check_subtext("def", "abcdef")
