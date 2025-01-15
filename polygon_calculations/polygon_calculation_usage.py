@@ -1,8 +1,6 @@
-from polygon_calculator import polygon_all_data
+from polygon_calculator import polygon_all_data, polygon_interior_angles_sum, polygon_diagonals
 
 if __name__ == '__main__':
-    for i in range(2, 101):
-        print('==============================================')
-        print(f'Polygon with {i} sides')
-        print('==============================================')
-        polygon_all_data(i, 2)
+    polygon_all_data(86, 2)
+    polygon_interior_angles_sum(6)
+    polygon_diagonals(4)
