@@ -1,11 +1,11 @@
 This script provides several geometric calculations related to a regular polygon. The following functions are implemented:
 
-- Calculating the number of diagonals in the polygon.
-- Calculating the sum of the interior angles of the polygon.
-- Calculating the interior angle of a regular polygon.
-- Calculating the radius of the circumscribed circle (circle outside the polygon).
-- Calculating the radius of the inscribed circle (circle inside the polygon).
-- Calculating the area of the polygon.
+- `polygon_diagonals` - calculating the number of diagonals in the polygon.
+- `polygon_interior_angles_sum` - calculating the sum of the interior angles of the polygon.
+- `polygon_interior_angle` - calculating the interior angle of a regular polygon.
+- `circumscribed_circle_radius` - calculating the radius of the circumscribed circle (circle outside the polygon).
+- `inscribed_circle_radius` - calculating the radius of the inscribed circle (circle inside the polygon).
+- `area_of_polygon` - calculating the area of the polygon.
 
 The functions take two arguments - the number of sides of the polygon (`polygon_sides`) and the length of the side of the polygon (`side_length`).
 
