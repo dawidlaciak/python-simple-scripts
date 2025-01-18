@@ -16,5 +16,5 @@ def range_calculator(movement_field):
         return False
     
 if __name__ == '__main__':
-    movement_field = [2,3,2,0,0,2,0,1]
+    movement_field = [2,3,3,1,0,1,1,0]
     print(range_calculator(movement_field))
