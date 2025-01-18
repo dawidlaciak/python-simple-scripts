@@ -29,17 +29,15 @@ for step in range(simulation_steps):
         coordinateX[i] += vector * cos(angle)
         coordinateY[i] += vector * sin(angle)
 
-    condition_copy = condition.copy()
-
     for i in range(population):
-        if condition_copy[i] == 'r':
+        if condition[i] == 'r':
             for j in range(population):
-                distance = sqrt((coordinateX[i] - coordinateX[j])**2 + (coordinateY[i] - coordinateY[j])**2)
+                distance = sqrt((coordinateX[i] - coordinateX[j])**2 + (coordinateY[i] - coordinateY[j])**2) # distance between sick and healthy person
                 if distance < spread_radius:
                     condition[j] = 'r'
 
-    healthy_people = 0
-    sick_people = 0
+    healthy_people = 0 # amout of healthy people during specific step
+    sick_people = 0 # amout of sick people during specific step
     for i in range(population):
         if condition[i] == 'g':
             healthy_people += 1
