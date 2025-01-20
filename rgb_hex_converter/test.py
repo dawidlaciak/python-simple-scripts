@@ -1,5 +1,0 @@
-print(ord('F'))
-print(ord('0'))
-print(ord('X'))
-print(ord('Y'))
-print(ord('Z'))
