@@ -28,5 +28,6 @@ def sms_converter(text):
     print(converter_dict)
     return '/'.join(converted_text)
 
-result = sms_converter('pomocy lagun siedzi za oknem na drzewie')
-print(result)
+if __name__ == '__main__':
+    result = sms_converter('pomocy lagun siedzi za oknem na drzewie')
+    print(result)
