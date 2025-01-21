@@ -1,6 +1,4 @@
-def sms_converter(text):
-
-    text = text.upper()
+def sms_converter(text:str) -> str:
 
     converted_text = []
     converter_dict = {}
@@ -16,18 +14,35 @@ def sms_converter(text):
 
         letter_number += 3
 
-    for letter in text:
+    if text.replace(' ', '').isalpha():
+        text = text.upper()
+
+        for letter in text:
+            
+            if letter == ' ':
+                converted_text.append('0')
+
+            for key in converter_dict:
+                if letter in converter_dict[key]:
+                    converted_text.append(str(key) * (converter_dict[key].index(letter) + 1))
         
-        if letter == ' ':
-            converted_text.append('0')
+        return '/'.join(converted_text)
+    
+    else:
+        split_num = text.split('/')
+        print(split_num)
 
-        for key in converter_dict:
-            if letter in converter_dict[key]:
-                converted_text.append(str(key) * (converter_dict[key].index(letter) + 1))
+        for number in split_num:
+            if number == '0':
+                converted_text.append(' ')
+            else:
+                converted_text.append(converter_dict[int(number[0])][len(number) - 1])
+        
+        return ''.join(converted_text)
+    
+    return 'Incorrect data'
 
-    print(converter_dict)
-    return '/'.join(converted_text)
 
 if __name__ == '__main__':
-    result = sms_converter('pomocy lagun siedzi za oknem na drzewie')
+    result = sms_converter('7/666/6/666/222/999/0/555/2/4/88/66/0/7777/444/33/3/9999/444/0/9999/2/0/666/55/66/33/6/0/66/2/0/3/777/9999/33/9/444/33')
     print(result)
