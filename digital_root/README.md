@@ -1,0 +1,1 @@
+This project provides a Python implementation of a Digital Root Calculator along with a set of unit tests to ensure its correctness. The digital root of a number is the single-digit value obtained by repeatedly summing its digits until only one digit remains. For example, the digital root of 354 is 3 (since 3 + 5 + 4 = 12, and 1 + 2 = 3).

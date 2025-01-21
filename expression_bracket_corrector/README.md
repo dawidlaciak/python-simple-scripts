@@ -1,0 +1,3 @@
+The *bracket_counter.py* file contains a script that checks the correctness of the parentheses in an algebraic expression. If the parentheses are incorrect (there are too many opening or closing parentheses), the script corrects them and returns a `list` of the longest, correct expressions with correct parentheses.
+
+The *bracket_counter_tests.py* file contains 9 tests that verify the correct operation of the main script.
