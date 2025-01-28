@@ -1,23 +1,33 @@
-import math
-from itertools import chain
-
-def replacement_coder(text:str):
-
-    text_length = len(text)
-    required_lists = math.ceil(math.sqrt(text_length))
-    encrypted_text = [['' for i in range(required_lists)] for i in range(required_lists)]
-    indexed_element = 0
-
-    for i in range(required_lists):
-        for j in range(required_lists):
-            if indexed_element < text_length:
-                encrypted_text[j][i] = text[indexed_element]
-                indexed_element += 1
-
-    encrypting_result = ''.join(chain.from_iterable(encrypted_text))
-
-    return encrypting_result
-
-print(replacement_coder('W kotłowni łowi się koty.'))
+def encrypt(packet, key):
+    text = packet + ' ' * (key**2 - len(packet)) 
+    encrypted_packet = ''
+    
+    for column in range(key):
+        for row in range(key):
+            encrypted_packet += text[row * key + column]  
+    
+    return encrypted_packet
 
 
+message = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et.'
+key = 5
+
+start_packet = 0
+encrypted_message = ''
+
+while start_packet < len(message):
+    packet = message[start_packet : start_packet + key**2]
+    start_packet += key**2
+    encrypted_message += encrypt(packet, key)
+
+print("Encrypted message:", encrypted_message)
+
+start_packet = 0
+decrypted_message = ''
+
+while start_packet < len(encrypted_message):
+    packet = encrypted_message[start_packet : start_packet + key**2]
+    start_packet += key**2
+    decrypted_message += encrypt(packet, key)
+
+print("Decrypted message:", decrypted_message)
